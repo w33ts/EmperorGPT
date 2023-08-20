@@ -1,19 +1,28 @@
 version: '3'
 
-networks:
-  dev:
-
 services:
 
   # ==== Application ====
 
   app:
-    container_name: my_bot
+    container_name: EmperorGPT
     build:
       context: ./
       dockerfile: ./.docker/app/Dockerfile
-    env_file:
-      - .env
+    environment:
+      - BOT_TOKEN=$BOT_TOKEN
+      - TEST_GUILD_ID=$TEST_GUILD_ID
+      - BOT_OWNER_ID=$BOT_OWNER_ID
+      - DATABASE_HOST=$DATABASE_HOST
+      - DATABASE_PORT=$DATABASE_PORT
+      - DATABASE_NAME=$DATABASE_NAME
+      - DATABASE_USER=$DATABASE_USER
+      - DATABASE_PASSWORD=$DATABASE_PASSWORD
+      - API_PORT=$API_PORT
+      - API_ADMIN_TOKEN=$API_ADMIN_TOKEN
+      - WEBSOCKET_URL=ws://localhost:3001
+      - IMGUR_CLIENT_ID=$IMGUR_CLIENT_ID
+      - OPENAI_API_KEY=$OPENAI_API_KEY
     ports:
       - 4000:4000
     volumes:
@@ -21,8 +30,6 @@ services:
         - ./logs/:/app/logs
         - ./assets:/app/assets
     restart: always
-    networks:
-      - dev
     # depends_on:
     #   - database
 
