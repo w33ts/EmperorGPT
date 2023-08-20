@@ -9,6 +9,7 @@ on:
 jobs:
   push-emperorgpt-image:
     runs-on: ubuntu-latest
+    permissions: write-all
     defaults:
       run:
         working-directory: '.'
