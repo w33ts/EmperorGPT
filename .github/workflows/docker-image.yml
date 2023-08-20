@@ -9,6 +9,7 @@ on:
 jobs:
   push-emperorgpt-image:
     runs-on: ubuntu-latest
+    permissions: write-all
     defaults:
       run:
         working-directory: '.'
@@ -25,5 +26,5 @@ jobs:
 
       - name: 'Build EmperorGPT Image'
         run: |
-          docker build .docker/app/ --tag ghcr.io/w33ts/emperorgpt:latest
+          docker build -f .docker/app/Dockerfile . --tag ghcr.io/w33ts/emperorgpt:latest
           docker push ghcr.io/w33ts/emperorgpt:latest
