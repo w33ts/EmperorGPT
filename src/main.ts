@@ -6,6 +6,7 @@ import discordLogs from "discord-logs"
 import { Client, DIService, tsyringeDependencyRegistryEngine } from "discordx"
 import { container } from "tsyringe"
 
+
 import { Server } from "@api/server"
 import { apiConfig, generalConfig, websocketConfig } from "@configs"
 import { NoBotTokenError } from "@errors"
