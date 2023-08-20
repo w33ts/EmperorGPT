@@ -2,10 +2,7 @@ import { Category } from "@discordx/utilities"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
 import {
-  ActionRowBuilder,
   ApplicationCommandOptionType,
-  ButtonBuilder,
-  ButtonStyle,
   CommandInteraction,
   EmbedBuilder,
   EmbedField
@@ -15,13 +12,10 @@ import { injectable } from "tsyringe"
 import OpenAI from "openai"
 dayjs.extend(relativeTime)
 
-import { generalConfig } from "@configs"
 import {Discord, Slash, SlashOption} from "@decorators"
 import { Guard } from "@guards"
 import { Stats } from "@services"
-import { getColor, getTscordVersion, isValidUrl, timeAgo } from "@utils/functions"
-
-import packageJson from "../../../package.json"
+import { getColor } from "@utils/functions"
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // defaults to process.env["OPENAI_API_KEY"]
@@ -43,6 +37,7 @@ export default class EmperorCommand {
   async emperor(
     @SlashOption({
       name: 'question',
+      description: "Pray for the Emperor's mercy, weakling.",
       required: true,
       type: ApplicationCommandOptionType.String,
     }) question: string | undefined,
@@ -56,7 +51,7 @@ export default class EmperorCommand {
         name: interaction.user.username,
         iconURL: interaction.user.displayAvatarURL(),
       })
-      .setTitle(client.user!.tag)
+      .setTitle("The Emperor has graced you with one question, worm.")
       .setThumbnail(client.user!.displayAvatarURL())
       .setColor(getColor('primary'))
       // .setDescription(packageJson.description)
@@ -78,23 +73,22 @@ export default class EmperorCommand {
     });
 
     /**
-     * Owner field
+     * User Question
      */
     const openaiQuestion = completion.choices[0].message
       fields.push({
-      name: 'Question',
+      name: 'Your pathetic question:',
       value: question as string,
       inline: false,
     })
 
-    console.log(completion.choices[0].message)
 
     // /**
-    //  * Uptime field
+    //  * OpenAI Response
     //  */
     const openaiResponse: any = completion.choices[0].message.content
     fields.push({
-      name: 'Response',
+      name: "The God Emperor's glorious response:",
       value: openaiResponse,
       inline: false,
     })
