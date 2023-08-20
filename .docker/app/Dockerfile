@@ -21,6 +21,7 @@ RUN npm run build
 
 ## producation runner
 FROM node:16.17-buster-slim as prod-runner
+LABEL org.opencontainers.image.source="https://github.com/w33ts/EmperorGPT"
 
 # set production mode
 ARG NODE_ENV=production
