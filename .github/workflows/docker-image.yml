@@ -9,9 +9,9 @@ on:
 jobs:
   push-emperorgpt-image:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: '.docker/app'
+    # defaults:
+    #   run:
+    #     working-directory: '.docker/app'
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
@@ -25,5 +25,5 @@ jobs:
 
       - name: 'Build EmperorGPT Image'
         run: |
-          docker build . --tag ghcr.io/w33ts/emperorgpt:latest
+          docker build .docker/app/ --tag ghcr.io/w33ts/emperorgpt:latest
           docker push ghcr.io/w33ts/emperorgpt:latest
