@@ -9,9 +9,9 @@ on:
 jobs:
   push-emperorgpt-image:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: '.docker/app'
+    defaults:
+      run:
+        working-directory: '.'
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
