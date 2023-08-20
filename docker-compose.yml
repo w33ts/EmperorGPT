@@ -24,7 +24,7 @@ services:
       - IMGUR_CLIENT_ID=$IMGUR_CLIENT_ID
       - OPENAI_API_KEY=$OPENAI_API_KEY
     ports:
-      - 4000:4000
+      - "4000:4000"
     volumes:
         - ./database:/app/database
         - ./logs/:/app/logs
