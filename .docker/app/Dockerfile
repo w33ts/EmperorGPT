@@ -5,16 +5,16 @@ FROM node:16.17-buster-slim as build-runner
 WORKDIR /tmp/app
 
 # Move package.json and package-lock.json
-COPY package.json .
-COPY package-lock.json .
-COPY src ./src
+COPY ./package.json .
+COPY ./package-lock.json .
+COPY ./src ./src
 
 # Install dependencies from package-lock.json
 # and install dependencies for plugins (because postinstall script doesn't work in docker)
 RUN npm ci
 
 COPY .swcrc .
-COPY tsconfig.json .
+COPY ./tsconfig.json .
 
 # Build project
 RUN npm run build
