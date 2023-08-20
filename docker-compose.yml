@@ -6,9 +6,8 @@ services:
 
   app:
     container_name: EmperorGPT
-    build:
-      context: ./
-      dockerfile: ./.docker/app/Dockerfile
+    image: ghcr.io/w33ts/emperorgpt:latest
+    pull_policy: always
     environment:
       - BOT_TOKEN=$BOT_TOKEN
       - TEST_GUILD_ID=$TEST_GUILD_ID
