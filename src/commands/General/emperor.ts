@@ -69,7 +69,7 @@ export default class EmperorCommand {
           content: question ?? "Default question if undefined"
         }
       ],
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4-1106-preview',
     });
 
     /**
